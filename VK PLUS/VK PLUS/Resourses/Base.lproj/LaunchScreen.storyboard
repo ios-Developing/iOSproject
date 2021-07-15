@@ -15,8 +15,29 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="cE5-j1-tDn">
+                                <rect key="frame" x="172" y="413" width="70" height="70"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VK PLUS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrV-YT-xYr">
+                                <rect key="frame" x="144" y="357" width="126.5" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="GrV-YT-xYr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="4Zf-1B-n9y"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GrV-YT-xYr" secondAttribute="trailing" id="4if-0q-FHs"/>
+                            <constraint firstItem="GrV-YT-xYr" firstAttribute="centerX" secondItem="cE5-j1-tDn" secondAttribute="centerX" id="DUw-W0-mAI"/>
+                            <constraint firstItem="GrV-YT-xYr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="313" id="JUz-aP-0qN"/>
+                            <constraint firstItem="cE5-j1-tDn" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="W1K-G0-dkg"/>
+                            <constraint firstItem="cE5-j1-tDn" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="172" id="eSB-Qr-kGb"/>
+                            <constraint firstItem="GrV-YT-xYr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="jih-lO-MH8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cE5-j1-tDn" secondAttribute="bottom" constant="379" id="o1I-b4-reH"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
