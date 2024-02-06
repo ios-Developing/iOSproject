@@ -1,15 +1,23 @@
 import UIKit
 
-//Урок 5. Протоколы, классы и расширения
-//В рамках прошлого дз был создан класс пиццерии с переменной, в которой хранится пицца, удалите ее. Необходимо создать структуру картошки фри, в которой будет стоимость и размер картошки и сделать так, чтобы в классе пиццерии была одна переменная, в которую можно было бы класть и пиццу, и картошку фри.
-//Добавьте в класс пиццерии функцию, которая будет добавлять новую позицию в меню.
-//Создайте протокол, в котором будут содержаться функции открытия и закрытия.
-//Написать расширение для класса пиццерии, в котором будет реализован протокол из пункта 3.
-//Написать функцию, в которой происходит вычитание одного числа из другого. Функция должна работать и с Int, и с Double.Функция должна возвращать результат вычитания.
+//Урок 6. ARC и управление памятью
+//Создать структуру работника пиццерии. В ней должны быть такие свойства, как имя, зарплата и должность. Должностей пока может быть две: или кассир, или повар. Добавить в класс пиццерии массив с работниками
+//Создать класс столика, в нем должны быть свойство, в котором содержится количество мест и функция, которая на вход принимает количество гостей, которое хотят посадить, а возвращает true, если места хватает и false, если места не хватает. Изначальное количество мест задается в инициализаторе
+//Добавить в класс пиццерии свойство, в котором хранится массив столиков. У класса столика добавить свойство, в котором хранится пиццерия, в которой стоит столик. Столики создаются сразу в инициализаторе, не передаются туда в качестве параметра
 
 protocol MenuProtocol {
-    var cost: Double { get set }
-    var size: String { get set }
+    var cost: Double { get }
+    var size: String { get }
+}
+
+struct Employee {  //Создать структуру работника пиццерии. В ней должны быть такие свойства, как имя, зарплата и должность. Должностей пока может быть две: или кассир, или повар. Добавить в класс пиццерии массив с работниками
+    enum Position {
+        case cashier
+        case cook
+    }
+    var name: String
+    var salary: Double
+    var position: Position
 }
 
 enum PizzaAdditive: String {
@@ -49,23 +57,18 @@ struct Pizza : MenuProtocol {
     var cost: Double
     var size: String
     var type: PizzaType
-    var doughType: String
     var additives: PizzaAdditive
     struct PizzaView {
         var pizza: Pizza
         func displayPizza() {
             print("Type: \(pizza.type.description)")
             print("Cost: \(pizza.cost) RUB")
-            print("Dough Type: \(pizza.doughType)")
             print("Additives: \(pizza.additives.rawValue)")
         }
     }
 }
 
 struct Chips : MenuProtocol {
-    enum Chips {
-        case xxl
-    }
     var cost: Double
     var size: String
 }
@@ -74,39 +77,60 @@ struct Chips : MenuProtocol {
 
 class Pizzeria {
     var menu: [MenuProtocol]        // чтобы в классе пиццерии была одна переменная, в которую можно было бы класть и пиццу, и картошку фри.
-    init(menu: [MenuProtocol]) {
+    var employees: [Employee]       //Добавить в класс пиццерии массив с работниками
+    var tables: [Table]             //Добавить в класс пиццерии свойство, в котором хранится массив столиков.
+    init(menu: [MenuProtocol], employees: [Employee], tables: [Table]) {
         self.menu = menu
+        self.employees = employees
+        self.tables = []
+        // Столики создаются сразу в инициализаторе, не передаются туда в качестве параметра
+        for _ in 1...5 {
+            let table = Table(numberOfSeats: 4)
+            table.pizzeria = self
+            self.tables.append(table)
+        }
     }
-    
     //Добавьте в класс пиццерии функцию, которая будет добавлять новую позицию в меню.
-    
     func addMenu(_ new: MenuProtocol) {
         menu.append(new)
     }
-}
-
-//Создайте протокол, в котором будут содержаться функции открытия и закрытия.
-
-protocol OpenClosePizzeria {
-    func openPizzeria()
-    func closePizzeria()
-}
-
-//Написать расширение для класса пиццерии, в котором будет реализован протокол из пункта 3.
-
-extension Pizzeria {
-    func openPizzeria(){
-        print("Cafe open")
-    }
-    func closePizzeria(){
-        print("Cafe closed")
+    func addEmployee(_ employee: Employee) { //Добавление работника
+        employees.append(employee)
     }
 }
 
-//Написать функцию, в которой происходит вычитание одного числа из другого. Функция должна работать и с Int, и с Double.Функция должна возвращать результат вычитания.
+class Table { //Создать класс столика, в нем должны быть свойство, в котором содержится количество мест
 
-func summ<T: Numeric> (a: T, b: T) -> T {
-    a + b
+    var numberOfSeats: Int
+    var pizzeria: Pizzeria? // У класса столика добавить свойство, в котором хранится пиццерия, в которой стоит столик.
+
+    init(numberOfSeats: Int) {
+        self.numberOfSeats = 4 // Изначальное количество мест задается в инициализаторе
+        self.pizzeria = nil
+    }
+
+    func checkAvailability(numberOfGuests: Int) -> Bool { //функция, которая на вход принимает количество гостей, которое хотят посадить, а возвращает true, если места хватает и false, если места не хватает.
+        return numberOfGuests <= numberOfSeats
+    }
 }
 
-print(summ(a: 10, b: 10.5))
+// Создание Пицерии
+let pizzeria = Pizzeria(menu: [], employees: [Employee(name: "Ivan", salary: 10000.50, position: .cook)], tables: [])
+// Создание меню
+var menu = pizzeria.menu
+var myChips1 = Chips(cost: 103.60, size: "Small")
+var myPizza1 = Pizza(cost: 204, size: "Big", type: .margherita, additives: .cheese)
+pizzeria.addMenu(myChips1)
+pizzeria.addMenu(myPizza1)
+
+// Создание работников
+let employee1 = Employee(name: "John", salary: 2000, position: .cashier)
+let employee2 = Employee(name: "Jane", salary: 2500, position: .cook)
+// Add employees to the pizzeria
+pizzeria.addEmployee(employee1)
+pizzeria.addEmployee(employee2)
+
+//Примеры:
+print(pizzeria.menu) // Меню
+print(pizzeria.tables.count) // Кол-во столов
+print(pizzeria.tables[1].numberOfSeats) //Кол-во мест у 1 стола
