@@ -2,28 +2,28 @@ import UIKit
 
 // 1. Создать перечисление с видами пиццы (хотя бы 4 - 5 кейсов)
 
-enum PizzaType: String {
-    case margherita
-    case pepperoni
-    case hawaiian
-    case veggie
-    case bbqChicken
-
-    var description: String {
-        switch self {
-        case .margherita:
-            return "Margherita Pizza"
-        case .pepperoni:
-            return "Pepperoni Pizza"
-        case .hawaiian:
-            return "Hawaiian Pizza"
-        case .veggie:
-            return "Veggie Pizza"
-        case .bbqChicken:
-            return "BBQ Chicken Pizza"
-        }
-    }
-}
+//enum PizzaType: String {
+//    case margherita
+//    case pepperoni
+//    case hawaiian
+//    case veggie
+//    case bbqChicken
+//
+//    var description: String {
+//        switch self {
+//        case .margherita:
+//            return "Margherita Pizza"
+//        case .pepperoni:
+//            return "Pepperoni Pizza"
+//        case .hawaiian:
+//            return "Hawaiian Pizza"
+//        case .veggie:
+//            return "Veggie Pizza"
+//        case .bbqChicken:
+//            return "BBQ Chicken Pizza"
+//        }
+//    }
+//}
 
 enum PizzaAdditive: String {
     case cheese = "Cheese: Adds a rich and creamy flavor to the pizza."
@@ -36,6 +36,29 @@ enum PizzaAdditive: String {
 // 2. Создать структуру пиццы, она должна содержать стоимость, вид пиццы, толстое или тонкое тесто и добавки (например, дополнительно добавить пепперони, помидоры, сыр). Вид пиццы должен быть вложенным типом для структуры пиццы. Подсказка: добавки лучше также сделать перечислением.
 
 struct Pizza {
+    enum PizzaType: String {
+        case margherita
+        case pepperoni
+        case hawaiian
+        case veggie
+        case bbqChicken
+
+        var description: String {
+            switch self {
+            case .margherita:
+                return "Margherita Pizza"
+            case .pepperoni:
+                return "Pepperoni Pizza"
+            case .hawaiian:
+                return "Hawaiian Pizza"
+            case .veggie:
+                return "Veggie Pizza"
+            case .bbqChicken:
+                return "BBQ Chicken Pizza"
+            }
+        }
+    }
+    
     var cost: Double
     var type: PizzaType
     var doughType: String
@@ -66,7 +89,7 @@ class Pizzeria {
     
     // Написать в классе пиццерии функции для получения всех доступных пицц.
     func getAllPizzas() -> [Pizza] {
-        return pizzas
+        pizzas // убрал return
     }
 }
 
@@ -93,3 +116,16 @@ for pizza in allPizzas {
     pizzaView.displayPizza()
     print("-----")
 }
+
+
+
+//Урок 5. Протоколы, классы и расширения
+//В рамках прошлого дз был создан класс пиццерии с переменной, в которой хранится пицца, удалите ее. Необходимо создать структуру картошки фри, в которой будет стоимость и размер картошки и сделать так, чтобы в классе пиццерии была одна переменная, в которую можно было бы класть и пиццу, и картошку фри.
+
+//Добавьте в класс пиццерии функцию, которая будет добавлять новую позицию в меню.
+
+//Создайте протокол, в котором будут содержаться функции открытия и закрытия.
+
+//Написать расширение для класса пиццерии, в котором будет реализован протокол из пункта 3.
+
+//Написать функцию, в которой происходит вычитание одного числа из другого. Функция должна работать и с Int, и с Double.Функция должна возвращать результат вычитания.
