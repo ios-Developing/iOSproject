@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "MY APP"; ObjectID = "5qg-vq-01n"; */
+"5qg-vq-01n.text" = "MY APP";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "9n7-00-S14"; */
+"9n7-00-S14.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Ваш логин"; ObjectID = "Eyx-bw-fzx"; */
+"Eyx-bw-fzx.placeholder" = "Ваш логин";
+
+/* Class = "UITextField"; text = "1"; ObjectID = "Eyx-bw-fzx"; */
+"Eyx-bw-fzx.text" = "1";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bGt-Vj-2fH"; */
+"bGt-Vj-2fH.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "nF2-Tm-mPq"; */
+"nF2-Tm-mPq.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "Ваш пароль"; ObjectID = "npx-bi-0uv"; */
+"npx-bi-0uv.placeholder" = "Ваш пароль";
+
+/* Class = "UITextField"; text = "1"; ObjectID = "npx-bi-0uv"; */
+"npx-bi-0uv.text" = "1";
